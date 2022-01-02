@@ -17,25 +17,25 @@ import mpl_toolkits
 from pandas.plotting import scatter_matrix
 
 
+# imports and reads data from csv file
+data = pd.read_csv('combined_csv.csv')
 
-#imports and reads data from csv file 
-data  = pd.read_csv('combined_csv.csv')
-
-#renames columns 
+# renames columns
 #data.columns = ['Sale Type', 'W', 'X', 'Y', 'Z']
-#creates copy with new column names 
-df2 = data.set_axis(['Sale_type', 'Sold_Date', 'Property_Type', 'Address', 'City','State','Zip_Code','Price','BEDS','BATHS','Location','SQFT','Lot_Size','Year_Built','Days_On_Market','$/SQFT','HOA/Month','Status','Next_OPen_house','Next_Open_house_end','URL','Source','MLS','Favorite','Interested','Latitude','Longitude'], axis=1, inplace=False)
+# creates copy with new column names
+df2 = data.set_axis(['Sale_type', 'Sold_Date', 'Property_Type', 'Address', 'City', 'State', 'Zip_Code', 'Price', 'BEDS', 'BATHS', 'Location', 'SQFT', 'Lot_Size', 'Year_Built', 'Days_On_Market',
+                    '$/SQFT', 'HOA/Month', 'Status', 'Next_OPen_house', 'Next_Open_house_end', 'URL', 'Source', 'MLS', 'Favorite', 'Interested', 'Latitude', 'Longitude'], axis=1, inplace=False)
 
-# sets pandas option to display all columns 
+# sets pandas option to display all columns
 pd.set_option('display.max_columns', None)
 
-#displays some key data metrics
-#print(df2.describe())
+# displays some key data metrics
+# print(df2.describe())
 
-#print(data.head())
-#print(data.describe())
+# print(data.head())
+# print(data.describe())
 
-# #Bar chart to show number of bedrooms 
+# #Bar chart to show number of bedrooms
 # df2['BEDS'].value_counts().plot(kind='bar')
 # plt.title('number of Bedroom')
 # plt.xlabel('Bedrooms')
@@ -52,11 +52,11 @@ pd.set_option('display.max_columns', None)
 # #plt1 = plt()
 # sns.despine
 
-#plots prive vs sqft 
+# plots prive vs sqft
 # plt.scatter(df2.Price,df2.SQFT)
 # plt.title("Price vs Square Feet")
 
-#plt.scatter(df2.Price,df2.Longitude)
+# plt.scatter(df2.Price,df2.Longitude)
 #plt.title("Price vs Location of the area")
 
 # plt.scatter(df2.Zip_Code,df2.Price)
@@ -70,12 +70,13 @@ pd.set_option('display.max_columns', None)
 # plt.title("Year_Built vs Price")
 
 # displays info about data
-#df2.info()
-features = ['Sold_Date','City','Zip_Code','Price','BEDS','BATHS','SQFT','Latitude','Longitude','Year_Built']
-#scatter_matrix(df2[features])
-#plt.show()
+# df2.info()
+features = ['Sold_Date', 'City', 'Zip_Code', 'Price', 'BEDS',
+            'BATHS', 'SQFT', 'Latitude', 'Longitude', 'Year_Built']
+# scatter_matrix(df2[features])
+# plt.show()
 
-#correlation matrix 
+# correlation matrix
 corrMatrix = df2.corr()
-sns.heatmap(corrMatrix, annot = True)
+sns.heatmap(corrMatrix, annot=True)
 plt.show()
