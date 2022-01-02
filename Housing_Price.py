@@ -17,6 +17,7 @@ import mpl_toolkits
 from pandas.plotting import scatter_matrix
 
 
+
 #imports and reads data from csv file 
 data  = pd.read_csv('combined_csv.csv')
 
@@ -29,7 +30,7 @@ df2 = data.set_axis(['Sale_type', 'Sold_Date', 'Property_Type', 'Address', 'City
 pd.set_option('display.max_columns', None)
 
 #displays some key data metrics
-print(df2.describe())
+#print(df2.describe())
 
 #print(data.head())
 #print(data.describe())
@@ -71,5 +72,10 @@ print(df2.describe())
 # displays info about data
 #df2.info()
 features = ['Sold_Date','City','Zip_Code','Price','BEDS','BATHS','SQFT','Latitude','Longitude','Year_Built']
-scatter_matrix(df2[features])
+#scatter_matrix(df2[features])
 #plt.show()
+
+#correlation matrix 
+corrMatrix = df2.corr()
+sns.heatmap(corrMatrix, annot = True)
+plt.show()
