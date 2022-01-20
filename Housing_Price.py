@@ -31,12 +31,22 @@ data = pd.read_csv('combined_csv.csv')
 
 # removes unwanted features
 df2 = data.drop(['SALE TYPE', 'SOLD DATE', 'PROPERTY TYPE', 'ADDRESS', 'CITY', 'STATE OR PROVINCE', 'LOCATION', 'DAYS ON MARKET',
-                'HOA/MONTH', 'STATUS', 'NEXT OPEN HOUSE START TIME', 'NEXT OPEN HOUSE END TIME', 'URL (SEE https://www.redfin.com/buy-a-home/comparative-market-analysis FOR INFO ON PRICING)', 'SOURCE', 'MLS#', 'FAVORITE', 'INTERESTED'], axis=1)
+                'HOA/MONTH', 'STATUS', 'NEXT OPEN HOUSE START TIME', 'NEXT OPEN HOUSE END TIME', 'URL (SEE https://www.redfin.com/buy-a-home/comparative-market-analysis FOR INFO ON PRICING)', 'SOURCE', 'MLS#', 'FAVORITE', 'INTERESTED',
+                 'LATITUDE', 'LONGITUDE'], axis=1)               
 # renames columns, in same matrix
 df2.rename(columns={'ZIP OR POSTAL CODE': 'ZIPCODE'}, inplace=True)
 
 # remove entry rows that have incomplete data
 df3 = df2.dropna()
+#print(df3.describe())
+
+# sorts data by price to view outliers 
+#print(df3.sort_values(by = 'PRICE'))
+
+# sorts data by beds to view outliers, removing one with 14 beds but only 1705 sqft
+print(df3.sort_values(by = 'BEDS'))
+df3= df3.drop(labels= 2481, axis=0)
+print(df3.sort_values(by = 'BEDS'))
 
 # store dependent variable seperatly
 prices = df3['PRICE']
@@ -105,7 +115,7 @@ pd.set_option('display.max_columns', None)
 sns.displot(prices)
 plt.title('Sale Price Distribution')
 plt.xlabel('Price')
-plt.show()
+#plt.show()
 
 # correlation matrix
 corrMatrix = df3.corr()
