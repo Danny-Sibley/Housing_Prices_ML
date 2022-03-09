@@ -6,4 +6,6 @@
 
 # Combined csv file is saved as combined_csv.csv
 
-# Data visualtions and machine learning models in Houseing_price file 
+# Data visualtions and machine learning models in Housing_price file 
+
+# Juypter Notebook write and explanation in Home_price_prediction_model.ipynb
